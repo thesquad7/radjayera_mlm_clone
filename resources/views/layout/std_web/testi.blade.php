@@ -18,7 +18,7 @@
       <li>Second list item with a longer description</li>
       <li>Third list item to close it out</li>
     </ul>
-    <p>{{$data["Body"]}}</p>
+    <p>{{$data["body"]}}</p>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Testi;
+use App\Models\Testimoni;
 
 class TestiController extends Controller
 {
@@ -11,7 +11,7 @@ class TestiController extends Controller
         return view('layout\std_web\welcome',
         [
             "title" => "Radjayera Jaya Utama",
-            "testy" => Testi::all()
+            "testy" => Testimoni::all()
         ]
         );
     }
@@ -19,7 +19,7 @@ class TestiController extends Controller
             return view('layout\std_web\testi',
             [
                 "title" => "Testimony",
-                "data" => Testi::find($id)
+                "data" => Testimoni::find($id)
             ]    
         );
     }
