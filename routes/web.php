@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[TestiController::class, 'index'] );
+Route::get('/ceo', function() {
+    return view('layout\dashboard\admin\HomeInfo');
+});
 Route::get('/Profile', function () {
     return view('layout\std_web\profile',
         [
@@ -54,3 +57,6 @@ Route::get('/Kontak', function () {
 });
 //=============================================
 Route::get('/{testimoni:slug}', [TestiController::class, 'show']);
+Route::get('/superadmin/login', function() {
+    return view('layout\login\adminlogin');
+});
