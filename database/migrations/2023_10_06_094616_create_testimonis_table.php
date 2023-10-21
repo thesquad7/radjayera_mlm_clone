@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('testimonis', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->text('author');
             $table->text('body');
             $table->timestamp('waktu_post')->nullable();

@@ -1,4 +1,3 @@
-
 @extends('layout.std_web.main')
 @section('container')
 <article class="blog-post">
@@ -24,3 +23,4 @@
       </div>
   </article>
 @endsection
+

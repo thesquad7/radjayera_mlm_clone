@@ -232,7 +232,7 @@
     <h2 class="pb-2 border-bottom">Testimoni</h2>
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
       @foreach ($testy as $item)
-      <a href="/{{$item["id"]}}" class="text-decoration-none">
+      <a href="/{{$item["slug"]}}" class="text-decoration-none">
         <div class="col">
         <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('https://media.istockphoto.com/id/1400563511/id/foto/konsep-kerja-tim-dan-kemitraan-tangan-bergabung-dengan-potongan-puzzle-di-kantor-pebisnis.jpg?s=1024x1024&w=is&k=20&c=BXJ5h7nPZXG3bPAMumvIGBhTw6o2HfNdLY41XToX9N4=');">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">

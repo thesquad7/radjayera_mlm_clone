@@ -15,11 +15,11 @@ class TestiController extends Controller
         ]
         );
     }
-    public function testi($id){
+    public function show(Testimoni $testimoni){
             return view('layout\std_web\testi',
             [
                 "title" => "Testimony",
-                "data" => Testimoni::find($id)
+                "data" => $testimoni
             ]    
         );
     }

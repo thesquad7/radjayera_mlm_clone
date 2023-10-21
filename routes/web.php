@@ -53,4 +53,4 @@ Route::get('/Kontak', function () {
 );
 });
 //=============================================
-Route::get('/{id}', [TestiController::class, 'testi']);
+Route::get('/{testimoni:slug}', [TestiController::class, 'show']);
