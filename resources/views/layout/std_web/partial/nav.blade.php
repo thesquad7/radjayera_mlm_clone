@@ -50,7 +50,7 @@
         -->
         </ul>
         <ul class="nav">
-            <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Login</a></li>
+            <li class="nav-item"><a href="/Login" class="nav-link link-body-emphasis px-2">Login</a></li>
             <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Sign up</a></li>
           </ul>
         

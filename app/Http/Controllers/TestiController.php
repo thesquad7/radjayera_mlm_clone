@@ -8,7 +8,7 @@ use App\Models\Testimoni;
 class TestiController extends Controller
 {
     public function index() {
-        return view('layout\std_web\welcome',
+        return view('layout.std_web.welcome',
         [
             "title" => "Radjayera Jaya Utama",
             "testy" => Testimoni::all()
@@ -16,7 +16,7 @@ class TestiController extends Controller
         );
     }
     public function show(Testimoni $testimoni){
-            return view('layout\std_web\testi',
+            return view('layout.std_web.testi',
             [
                 "title" => "Testimony",
                 "data" => $testimoni
