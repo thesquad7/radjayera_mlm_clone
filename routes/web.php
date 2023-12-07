@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TestiController;
 use App\Models\Testi;
 use Illuminate\Support\Facades\Route;
@@ -17,10 +19,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[TestiController::class, 'index'] );
-Route::get('/Login', function() {
-    return view('layout.login.login');
-});
-
+//=============Login Route
+Route::get('/Login',[LoginController::class, 'loginstd'] )->name('login')->middleware('guest');
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/superadmin/login',[LoginController::class, 'loginadm'] )->middleware('guest');
+Route::post('/loginadmin', [LoginController::class, 'authenticate']);
+//=============Login Route
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 Route::get('/ceo', function() {
     return view('layout\dashboard\admin\HomeInfo');
 });
@@ -60,6 +65,3 @@ Route::get('/Kontak', function () {
 );
 });
 Route::get('/{testimoni:slug}', [TestiController::class, 'show']);
-Route::get('/superadmin/login', function() {
-    return view('layout\login\adminlogin');
-});

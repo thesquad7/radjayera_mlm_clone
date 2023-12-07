@@ -101,6 +101,24 @@
     <link href="{{asset('bootstrap/signin/signin.css')}}" rel="stylesheet">
   </head>
   <body class="d-flex align-items-center py-4 bg-body-tertiary">
+    @if(session()->has('loginerror'))
+    <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSheet">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+          <div class="modal-header border-bottom-0">
+            <h1 class="modal-title fs-5">Informasi Login</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body py-0">
+            <p>{{session('loginerror')}}</p>
+          </div>
+          <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+            <button type="button" class="btn btn-lg btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endif
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -154,16 +172,22 @@
 
     
 <main class="form-signin w-100 m-auto">
-  <form>
+  <form action="/loginadmin" method="POST">
+    @csrf
     <img class="mb-4" src="{{asset('Logo.png')}}" alt="" width="30%" height="30%">
     <h1 class="h3 mb-3 fw-normal">Silakan Login</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="email" name="email" value="{{old('email')}}" class="form-control @error('email')is-invalid @enderror" autofocus required ="floatingInput" placeholder="name@example.com">
       <label for="floatingInput">Email address</label>
+      @error('email')
+      <div class="invalid-feedback">
+        {{$message}}
+      </div>
+      @enderror
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" name="password" class="form-control" required id="password" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
 

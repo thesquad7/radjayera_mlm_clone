@@ -14,9 +14,15 @@
 
       <div class="collapse navbar-collapse" id="navbarsExample09">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          @auth
+          <li class="nav-item">
+            <a class="nav-link {{ ($title === "Radjayera Jaya Utama") ? 'active' : ''}}" aria-current="page" href="/dashboard">Beranda</a>
+          </li>
+          @else
           <li class="nav-item">
             <a class="nav-link {{ ($title === "Radjayera Jaya Utama") ? 'active' : ''}}" aria-current="page" href="/">Beranda</a>
           </li>
+          @endauth
           <li class="nav-item">
             <a class="nav-link {{ ($title === "Profile") ? 'active' : ''}}" href="/Profile">Profile</a>
           </li>
@@ -49,11 +55,22 @@
           </li>
         -->
         </ul>
+        @auth
         <ul class="nav">
-            <li class="nav-item"><a href="/Login" class="nav-link link-body-emphasis px-2">Login</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Sign up</a></li>
-          </ul>
-        
+          <li><a class="nav-link disabled" aria-disabled="true">
+            Hi!, {{auth()->user()->name}}
+          </a></li>
+          <li class="nav-item"><form action="/logout" method="post">
+            @csrf
+            <button type="submit" class="nav-link link-body-emphasis px-2">Logout</button>
+          </form></li>
+        </ul>
+        @else
+        <ul class="nav">
+          <li class="nav-item"><a href="/Login" class="nav-link link-body-emphasis px-2">Login</a></li>
+          <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2">Sign up</a></li>
+        </ul>
+        @endauth
       </div>
     </div>
 </nav>
