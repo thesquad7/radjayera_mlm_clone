@@ -3,9 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Testimoni;
 use App\Models\User;
+use App\Models\Relation;
+use App\Models\Testimoni;
+use Illuminate\Database\Seeder;
+
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -20,5 +23,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password'=> bcrypt('1234')
          ]);
+        Relation::factory()->create([
+            'UID'=>'RJU0000001'
+        ]);
     }
 }

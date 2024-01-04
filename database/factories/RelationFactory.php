@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Ramsey\Uuid\Type\Integer;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\relation>
@@ -18,8 +18,10 @@ class RelationFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'UID' => 'RJU'+Str::random(8),      
+        return [   
+            'UID' => 'RJU0000001',
+            'IDSponsor' => 'Data',
+            'IDUpperline' => 'Data',
             
         ];
     }

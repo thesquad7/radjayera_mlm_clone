@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('UID')->uniqid();
-            $table->string('IDSponsor')->uniqid();
-            $table->string('IDUpperLine')->uniqid();
+            $table->string('IDSponsor')->nullable();
+            $table->string('IDUpperLine')->nullable();
 
         });
     }
