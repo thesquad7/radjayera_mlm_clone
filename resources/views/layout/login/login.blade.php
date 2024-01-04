@@ -69,7 +69,93 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
+      #captcha {
+    border-top: 5px solid #F64747;
+    background-color: #FFF;
+    height: 100vh;
+    min-height: 960px;
+    max-width: 980px;
+    margin: 0 auto;
+}
 
+#captcha .title {
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 30px;
+    padding: 30px 0;
+}
+
+#captcha .captcha-from {
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+#captcha .captcha-from label{
+    font-weight: normal;
+}
+
+#captcha .form-control{
+    border-radius: 0;
+}
+#captcha .input-group-addon {
+    border-top-left-radius: 0 ;
+    border-bottom-left-radius: 0;
+}
+
+#captcha .captcha-group div{
+    display: inline-block;
+}
+
+#captcha .captcha-code .code{
+    width: 200px;
+    height: 80px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    border: 1px solid #CCC;
+}
+
+#captcha .captcha-code .code .dynamic-code{
+    text-shadow: 4px 4px 5px rgba(150, 150, 150, 1);
+    color: #2d2d2;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 900;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently */
+    cursor: help;
+}
+
+#captcha .captcha-code .code .dynamic-code:first-letter{
+    font-size: 48px;
+}
+
+#captcha .captcha-code .captcha-reload{
+    cursor: pointer;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 0;
+    max-width: 36px;
+}
+
+#captcha .captcha-code .captcha-reload:hover{
+    color: #00B16A;
+}
+
+#captcha #captcha-input{
+    max-width: 200px;
+    margin-top: 15px;
+}
+
+#captcha .btn{
+    border-radius:0;
+}
       .btn-bd-primary {
         --bd-violet-bg: #712cf9;
         --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
@@ -166,6 +252,24 @@
       <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
+    <div class="form-group">
+      <label for="pwd">Captcha:</label>
+
+      <!-- input captcha -->
+      <div class="captcha-code">
+          <div class="code">
+              <div class="dynamic-code"></div>
+          </div>
+          <div class="captcha-reload">
+              <i class="ion-ios-loop-strong"></i>
+          </div>
+      </div>
+      <div class="captcha-input">
+          <input type="text" class="form-control" id="captcha-input"  required autocomplete="off"  placeholder="Enter captcha code ...">
+          <span id="errCaptcha"></span>
+      </div>
+
+  </div>
 
     <div class="form-check text-start my-3">
       <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
@@ -178,5 +282,81 @@
   </form>
 </main>
 <script src="{{asset('bootstrap/assets/dist/js/bootstrap.bundle.min.js')}}"></script>
+<script>
+  /**-------------------------------------------------
+ * Simple Captcha System
+ * @package Code Snippets
+ * @link http://rhythmshahriar.com/codes/
+ * @author Rhythm Shahriar <rhy@rhythmshahriar.com>
+ * @link http://rhythmshahriar.com
+ * @copyright Copyright © 2017, Rhythm Shahriar
+ ---------------------------------------------------*/
+ 
+//email verification
+$('#email').on('change', function () {
+    if(!validateEmail($(this).val())){
+        $('#errEmail').html('<span style="color: red;"><i class="ion-close"></i> Invalid email address.</span>');
+        $(this).val('');
+    }else {
+        $('#errEmail').html('');
+    }
+});
+
+//password verification
+$('#cpwd').on('change', function () {
+    if($(this).val() != $('#pwd').val() ){
+        $('#errPwd').html('<span style="color: red;"><i class="ion-close"></i> Password not matched.</span>');
+        $(this).val('');
+    }else {
+        $('#errPwd').html('');
+    }
+});
+
+
+//email validation
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
+//allow only number input
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    return (charCode > 47 && charCode < 58 || charCode == 8  || charCode == 9 || charCode == 46  || charCode >36 &&  charCode < 41);
+}
+
+
+//allow only number input
+function isAlpha(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    return (charCode > 64 && charCode < 91 || charCode > 96 &&  charCode < 123 || charCode == 8  || charCode == 9 || charCode == 46  || charCode >36 &&  charCode < 41);
+}
+
+//generate captcha
+function generateCaptcha(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+    return result;
+}
+
+//default captcha
+$('.dynamic-code').text(generateCaptcha(5, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'));
+
+$('.captcha-reload').on('click', function () {
+    $('.dynamic-code').text(generateCaptcha(5, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'));
+});
+
+//check captcha
+$('#captcha-input').on('change', function () {
+    if($(this).val() != $('.dynamic-code').text()){
+        $('#errCaptcha').html('<span style="color: red;"><i class="ion-close"></i> Captecha not matched.</span>');
+        $(this).val('');
+    }else {
+        $('#errCaptcha').html('');
+    }
+});
+</script>
     </body>
 </html>

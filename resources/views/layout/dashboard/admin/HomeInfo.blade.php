@@ -148,7 +148,7 @@
                 <h3>44</h3>
 
                 <p>User Registrations</p>
-              </div>
+              </div>Hellow
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>

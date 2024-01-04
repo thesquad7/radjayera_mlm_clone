@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TestiController;
+use App\Http\Controllers\TestimoniController;
 use App\Models\Testi;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,8 @@ Route::get('/superadmin/login',[LoginController::class, 'loginadm'] )->middlewar
 Route::post('/loginadmin', [LoginController::class, 'authenticate']);
 //=============Login Route
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::resource('/dashboard/member', DashboardPostController::class);
+Route::resource('/dashboard/testimoni', TestimoniController::class)->middleware('auth');
 Route::get('/ceo', function() {
     return view('layout\dashboard\admin\HomeInfo');
 });

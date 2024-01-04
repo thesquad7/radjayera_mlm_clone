@@ -5,7 +5,7 @@
       <img src="{{asset('lte/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
     </div>
     <div class="info">
-      <a href="#" class="d-block">Alexander Pierce</a>
+      <a href="#" class="d-block">{{auth()->user()->name}}</a>
     </div>
   </div>
 
@@ -36,15 +36,15 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="./index.html" class="nav-link active">
+            <a href="./index.html" class="nav-link {{Request::is('dashboard') ? 'active' : ''}}">
               <i class="far fa-circle nav-icon"></i>
               <p>Summary</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="./index2.html" class="nav-link">
+            <a href="./index2.html" class="nav-link {{Request::is('dashboard/member') ? 'active' : ''}}">
               <i class="far fa-circle nav-icon"></i>
-              <p>Manage Pengumuman</p>
+              <p>Manage Member</p>
             </a>
           </li>
           <li class="nav-item">

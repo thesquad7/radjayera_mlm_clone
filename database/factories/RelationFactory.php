@@ -4,10 +4,12 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+
+
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Testimoni>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\relation>
  */
-class TestimoniFactory extends Factory
+class RelationFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +19,8 @@ class TestimoniFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->text(40),
-            'slug' => Str::random(8),
-            'author' => fake()->name(10),
-            'body' => fake()->paragraph(16),
+            'UID' => 'RJU'+Str::random(8),      
+            
         ];
     }
 }

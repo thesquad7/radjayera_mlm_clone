@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Testimoni;
-use App\Http\Requests\StoreTestimoniRequest;
-use App\Http\Requests\UpdateTestimoniRequest;
+use Illuminate\Http\Request;
 
-class TestimoniController extends Controller
+class DashboardPostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('layout.dashboard.admin.memberlist',
+        [
+            'testimonis' => Testimoni::all()
+        ]);
     }
 
     /**
@@ -27,7 +29,7 @@ class TestimoniController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTestimoniRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -37,6 +39,7 @@ class TestimoniController extends Controller
      */
     public function show(Testimoni $testimoni)
     {
+        dd($testimoni);
         return view('layout.dashboard.admin.memberdetail', [
             'data'=>$testimoni
         ]);
@@ -47,25 +50,15 @@ class TestimoniController extends Controller
      */
     public function edit(Testimoni $testimoni)
     {
-        return view('layout.dashboard.admin.memberdetailedit', [
-            'data'=>$testimoni
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTestimoniRequest $request, Testimoni $testimoni)
+    public function update(Request $request, Testimoni $testimoni)
     {
-        $validateD =[
-            'tilte' => 'require|max:255',
-            'body' => 'require',
-        ];
-
-        if($request->sluq != $testimoni->slug){
-            $validateD['slug'] = 'require|unique:posts';
-        }
-        $validateData = $request->validate($validateD); 
+        
     }
 
     /**
@@ -75,5 +68,4 @@ class TestimoniController extends Controller
     {
         //
     }
-    
 }
